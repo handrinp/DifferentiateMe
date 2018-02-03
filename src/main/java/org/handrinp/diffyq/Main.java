@@ -14,12 +14,16 @@ import org.handrinp.diffyq.expression.trig.SinExpr;
 public class Main {
   public static void main(String[] args) {
     Graph g = new Graph();
-    Expression f = new ProductExpr(Expression.X, Expression.X);
-    Expression df = f.derivative();
-    Expression d2f = df.derivative();
+    Expression f = new ProductExpr(new ConstantExpr(1.0 / 6.0),
+        new PowerExpr(Expression.X, new ConstantExpr(3.0)));
+    Expression df = f.derivative().reduce();
+    Expression d2f = df.derivative().reduce();
+    Expression d3f = d2f.derivative().reduce();
     g.addFunction(f);
     g.addFunction(df);
     g.addFunction(d2f);
+    g.addFunction(d3f);
+    forEachWithIndex(Arrays.asList(f, df, d2f, d3f), testFunction, 0);
     g.show();
   }
 

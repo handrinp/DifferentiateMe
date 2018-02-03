@@ -114,6 +114,7 @@ public class Graph {
     final int rgb = settings.getColor().getRGB();
     Integer[] rows = new Integer[img.getWidth()];
 
+    // calculate f at each x value
     for (int c = 0; c < img.getWidth(); ++c) {
       double x = xValue(c);
       double y = f.evaluate(x);
@@ -123,6 +124,7 @@ public class Graph {
       }
     }
 
+    // draw a vertical line between neighboring points to interpolate the graph
     for (int c = 0; c < img.getWidth() - 1; ++c) {
       if (rows[c] != null && rows[c + 1] != null) {
         int rStart = clamp(Math.min(rows[c], rows[c + 1]) - 1, 0, settings.getHeight());
@@ -148,7 +150,7 @@ public class Graph {
   }
 
   public void show() {
-    JFrame frame = new JFrame();
+    JFrame frame = new JFrame("DifferentiateMe");
     frame.getContentPane().setLayout(new FlowLayout());
     frame.getContentPane().add(new JLabel(new ImageIcon(graph())));
     frame.setResizable(false);
