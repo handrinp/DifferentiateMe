@@ -14,8 +14,12 @@ import org.handrinp.diffyq.expression.trig.SinExpr;
 public class Main {
   public static void main(String[] args) {
     Graph g = new Graph();
-    Expression xSquared = new ProductExpr(Expression.X, Expression.X);
-    g.addFunction(xSquared);
+    Expression f = new ProductExpr(Expression.X, Expression.X);
+    Expression df = f.derivative();
+    Expression d2f = df.derivative();
+    g.addFunction(f);
+    g.addFunction(df);
+    g.addFunction(d2f);
     g.show();
   }
 

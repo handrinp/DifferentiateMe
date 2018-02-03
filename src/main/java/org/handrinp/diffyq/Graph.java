@@ -88,7 +88,8 @@ public class Graph {
     }
 
     // draw vertical grid lines
-    for (double x = settings.getMinX(); x < settings.getMaxX(); x += settings.getStepX()) {
+    for (double x = settings.getMinX() + settings.getMinX() % settings.getStepX(); x < settings
+        .getMaxX(); x += settings.getStepX()) {
       int c = xCoord(x);
 
       for (int r = 0; r < img.getHeight(); ++r) {
@@ -97,7 +98,8 @@ public class Graph {
     }
 
     // draw horizontal grid lines
-    for (double y = settings.getMinY(); y < settings.getMaxY(); y += settings.getStepY()) {
+    for (double y = settings.getMinY() + settings.getMinY() % settings.getStepY(); y < settings
+        .getMaxY(); y += settings.getStepY()) {
       int r = yCoord(y);
 
       for (int c = 0; c < img.getWidth(); ++c) {
@@ -112,7 +114,7 @@ public class Graph {
     final int rgb = settings.getColor().getRGB();
     Integer[] rows = new Integer[img.getWidth()];
 
-    for (int c = 0; c < settings.getWidth(); ++c) {
+    for (int c = 0; c < img.getWidth(); ++c) {
       double x = xValue(c);
       double y = f.evaluate(x);
 
@@ -121,10 +123,10 @@ public class Graph {
       }
     }
 
-    for (int c = 0; c < settings.getWidth() - 1; ++c) {
+    for (int c = 0; c < img.getWidth() - 1; ++c) {
       if (rows[c] != null && rows[c + 1] != null) {
-        int rStart = rows[c];
-        int rEnd = rows[c + 1];
+        int rStart = clamp(Math.min(rows[c], rows[c + 1]) - 1, 0, settings.getHeight());
+        int rEnd = clamp(Math.max(rows[c], rows[c + 1]) + 1, 0, settings.getHeight());
 
         for (int r = rStart; r <= rEnd; ++r) {
           img.setRGB(c, r, rgb);
