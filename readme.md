@@ -10,7 +10,7 @@ DifferentiateMe is a math expression library with a graphing utility.
 Features
 ---
 Current:
-- Create, simplify, differentiate, and evaluate __ expressions:
+- Create, combine, graph, simplify, differentiate, and evaluate __ expressions:
   - Arithmetic
   - Exponential/Logarithmic
   - Trig (so far just sin and cos)
