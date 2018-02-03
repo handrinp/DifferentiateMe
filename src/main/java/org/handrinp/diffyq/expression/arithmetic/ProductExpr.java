@@ -2,6 +2,7 @@ package org.handrinp.diffyq.expression.arithmetic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
@@ -81,7 +82,28 @@ public class ProductExpr extends Expression {
     // reduce each term, removing any ones
     List<Expression> newTerms =
         terms.stream().filter(f -> !(f instanceof ConstantExpr && ((ConstantExpr) f).isOne()))
-            .map(Expression::reduce).collect(Collectors.toList());
+            .map(Expression::reduce).sorted(Comparator.comparing(f -> f.getClass().getName()))
+            .collect(Collectors.toList());
+
+    for (int i = 0; i < newTerms.size() - 1; ++i) {
+      Expression u = newTerms.remove(i);
+
+      if (u instanceof ProductExpr) {
+        newTerms.addAll(i--, ((ProductExpr) u).terms);
+      } else if (u instanceof ConstantExpr) {
+        Expression v = newTerms.remove(i);
+
+        if (v instanceof ConstantExpr) {
+          newTerms.add(i--,
+              new ConstantExpr(((ConstantExpr) u).getValue() * ((ConstantExpr) v).getValue()));
+        } else {
+          newTerms.add(i, v);
+          newTerms.add(i, u);
+        }
+      } else {
+        newTerms.add(i, u);
+      }
+    }
 
     // product of 0 terms is 1
     if (newTerms.isEmpty())
