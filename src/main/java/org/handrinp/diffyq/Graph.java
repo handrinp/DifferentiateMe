@@ -1,5 +1,6 @@
 package org.handrinp.diffyq;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Graph {
-  private List<Expression> functions;
+  private List<Function> functions;
   private GraphSettings settings;
 
   public Graph(GraphSettings settings) {
@@ -17,8 +18,12 @@ public class Graph {
     this.settings = settings;
   }
 
+  public void addFunction(Expression f, Color color) {
+    functions.add(new Function(f, color));
+  }
+
   public void addFunction(Expression f) {
-    functions.add(f);
+    addFunction(f, settings.getColor());
   }
 
   public Graph() {
@@ -53,6 +58,7 @@ public class Graph {
   private BufferedImage drawBackground() {
     final int fg = settings.getForeground().getRGB();
     final int bg = settings.getBackground().getRGB();
+
     BufferedImage img =
         new BufferedImage(settings.getWidth(), settings.getHeight(), BufferedImage.TYPE_INT_RGB);
 
@@ -110,28 +116,42 @@ public class Graph {
     return img;
   }
 
-  public BufferedImage plot(Expression f, BufferedImage img) {
-    final int rgb = settings.getColor().getRGB();
-    Integer[] rows = new Integer[img.getWidth()];
+  public BufferedImage plot(Expression f, BufferedImage img, Color color) {
+    final int rgb = color.getRGB();
+    final int maxHeight = settings.getHeight() - 1;
+    final int maxWidth = settings.getWidth() - 1;
+    Integer[] ys = new Integer[img.getWidth()];
 
     // calculate f at each x value
     for (int c = 0; c < img.getWidth(); ++c) {
       double x = xValue(c);
       double y = f.evaluate(x);
 
-      if (Double.isFinite(y) && y > settings.getMinY() && y < settings.getMaxY()) {
-        rows[c] = yCoord(y);
+      // handle NaN and +/- infinity
+      if (Double.isFinite(y)) {
+        ys[c] = yCoord(y);
       }
     }
 
     // draw a vertical line between neighboring points to interpolate the graph
-    for (int c = 0; c < img.getWidth() - 1; ++c) {
-      if (rows[c] != null && rows[c + 1] != null) {
-        int rStart = clamp(Math.min(rows[c], rows[c + 1]) - 1, 0, settings.getHeight());
-        int rEnd = clamp(Math.max(rows[c], rows[c + 1]) + 1, 0, settings.getHeight());
+    for (int c0 = 0; c0 < img.getWidth() - 1; ++c0) {
+      boolean nonNull = ys[c0] != null && ys[c0 + 1] != null;
+      boolean bothMin = nonNull && ys[c0] == 0 && ys[c0 + 1] == 0;
+      boolean bothMax = nonNull && ys[c0] == maxHeight && ys[c0 + 1] == maxHeight;
 
+      // check if the points should be drawn
+      if (nonNull && !(bothMin || bothMax)) {
+        // thicken the line by making its bounds extra wide/tall
+        int rStart = clamp(Math.min(ys[c0], ys[c0 + 1]) - 1, 0, maxHeight);
+        int rEnd = clamp(Math.max(ys[c0], ys[c0 + 1]) + 1, 0, maxHeight);
+        int cStart = clamp(c0 - 1, 0, maxWidth);
+        int cEnd = clamp(c0 + 1, 0, maxWidth);
+
+        // draw the line
         for (int r = rStart; r <= rEnd; ++r) {
-          img.setRGB(c, r, rgb);
+          for (int c = cStart; c <= cEnd; ++c) {
+            img.setRGB(c, r, rgb);
+          }
         }
       }
     }
@@ -142,8 +162,8 @@ public class Graph {
   public BufferedImage graph() {
     BufferedImage img = drawBackground();
 
-    for (Expression f : functions) {
-      img = plot(f, img);
+    for (Function f : functions) {
+      img = plot(f.getF(), img, f.getColor());
     }
 
     return img;
@@ -157,5 +177,23 @@ public class Graph {
     frame.pack();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+  private class Function {
+    private Expression f;
+    private Color color;
+
+    public Function(Expression f, Color color) {
+      this.f = f;
+      this.color = color;
+    }
+
+    public Expression getF() {
+      return f;
+    }
+
+    public Color getColor() {
+      return color;
+    }
   }
 }

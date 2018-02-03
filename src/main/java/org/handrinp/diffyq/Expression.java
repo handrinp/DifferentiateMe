@@ -31,12 +31,6 @@ public abstract class Expression {
   public abstract String asString();
 
   public final String toString() {
-    String result = asString();
-
-    while (result.startsWith("((") && result.endsWith("))")) {
-      result = result.substring(1, result.length() - 1);
-    }
-
-    return result;
+    return asString();
   }
 }
