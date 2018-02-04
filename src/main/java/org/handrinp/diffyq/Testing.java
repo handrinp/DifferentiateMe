@@ -1,5 +1,7 @@
 package org.handrinp.diffyq;
 
+import java.awt.Color;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import org.handrinp.diffyq.expression.ConstantExpr;
@@ -10,8 +12,10 @@ import org.handrinp.diffyq.expression.arithmetic.SumExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
 import org.handrinp.diffyq.expression.trig.CosExpr;
 import org.handrinp.diffyq.expression.trig.SinExpr;
+import org.handrinp.diffyq.expression.trig.TanExpr;
+import org.handrinp.diffyq.gfx.Graph;
+import org.handrinp.diffyq.gfx.GraphSettings;
 
-// TODO move this into src/test/java, and use JUnit
 public class Testing {
   public static IndexedConsumer<Expression> testFunction = (i, f, x) -> {
     String n = i == 0 ? "" : ("" + i);
@@ -43,6 +47,17 @@ public class Testing {
     forEachWithIndex(
         Arrays.asList(three, x, add, neg, inv, prod, sin, cosxx, exp, xx, xxx, third, fun1),
         testFunction, x0);
+
+    GraphSettings settings = new GraphSettings.Builder().withDimensions(500, 500)
+        .withBounds(-Math.PI, Math.PI, -10, 10).build();
+    Graph g = new Graph(settings);
+    Expression f = new TanExpr(Expression.X);
+    Expression df = f.derivative().reduce();
+    g.addFunction(df, Color.RED);
+    g.addFunction(f);
+    File file = new File(new File(System.getProperty("user.home"), "Desktop"), "graph.png");
+    g.save(file);
+    g.show();
   }
 
   private static interface IndexedConsumer<E> {

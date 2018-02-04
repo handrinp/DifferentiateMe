@@ -113,7 +113,6 @@ public class ProductExpr extends Expression {
     if (newTerms.size() == 1)
       return newTerms.get(0);
 
-    // TODO combine like terms
     return new ProductExpr(newTerms);
   }
 

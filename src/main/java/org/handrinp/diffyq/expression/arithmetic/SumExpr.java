@@ -57,7 +57,6 @@ public class SumExpr extends Expression {
             .map(Expression::reduce).sorted(Comparator.comparing(f -> f.getClass().getName()))
             .collect(Collectors.toList());
 
-    // TODO combine like terms
     for (int i = 0; i < newTerms.size() - 1; ++i) {
       Expression u = newTerms.remove(i);
 

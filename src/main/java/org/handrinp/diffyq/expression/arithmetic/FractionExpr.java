@@ -57,8 +57,6 @@ public class FractionExpr extends Expression {
       return new FractionExpr(new ProductExpr(newU, newVF.u), newVF.v).reduce();
     }
 
-    // TODO cancel like terms
-    // TODO combine powers
     return new FractionExpr(newU, newV);
   }
 

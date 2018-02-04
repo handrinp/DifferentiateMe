@@ -21,7 +21,7 @@ Future:
 - Better reducing/simplifying of expressions
 - Multiple variables
 - GUI for building expressions and graphing them
-- See the `TODO` comments for more unimplemented features
+- See the [issues](https://github.com/handrinp/DifferentiateMe/issues) page for more unimplemented features
 
 Dependencies
 ---
