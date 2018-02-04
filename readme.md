@@ -13,7 +13,7 @@ Current:
 - Create, combine, graph, simplify, differentiate, and evaluate expressions:
   - Arithmetic (+, -, &ast;, /)
   - Exponential/Logarithmic
-  - Trig (so far just sin and cos)
+  - Trig (sin, cos, and tan)
   - Variable (so far just x)
   - Conditional and Piecewise
 
