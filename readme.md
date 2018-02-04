@@ -15,9 +15,11 @@ Current:
   - Exponential/Logarithmic
   - Trig (so far just sin and cos)
   - Variable (so far just x)
+  - Conditional and Piecewise
 
 Future:
 - More complex simplifying of expressions, such as combining like terms
+- GUI for building expressions and graphing them
 - See the TODO comments for more unimplemented features
 
 Dependencies
