@@ -1,6 +1,7 @@
 package org.handrinp.diffyq.expression;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
@@ -11,6 +12,10 @@ public class PiecewiseExpr extends Expression {
   public PiecewiseExpr(List<ConditionalExpr> exprs) {
     this.exprs = new ArrayList<>();
     this.exprs.addAll(exprs);
+  }
+
+  public PiecewiseExpr(ConditionalExpr... exprs) {
+    this(Arrays.asList(exprs));
   }
 
   @Override
