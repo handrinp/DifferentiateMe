@@ -1,4 +1,4 @@
-package org.handrinp.diffyq;
+package org.handrinp.diffyq.gfx;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import org.handrinp.diffyq.Expression;
 
 public class Graph {
   private List<Function> functions;

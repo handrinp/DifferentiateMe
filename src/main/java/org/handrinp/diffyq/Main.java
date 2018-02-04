@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import org.handrinp.diffyq.expression.trig.TanExpr;
+import org.handrinp.diffyq.gfx.Graph;
+import org.handrinp.diffyq.gfx.GraphSettings;
 
 public class Main {
   public static void main(String[] args) throws IOException {

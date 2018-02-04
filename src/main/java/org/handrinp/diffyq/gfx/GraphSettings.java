@@ -1,4 +1,4 @@
-package org.handrinp.diffyq;
+package org.handrinp.diffyq.gfx;
 
 import java.awt.Color;
 
