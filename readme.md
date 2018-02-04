@@ -11,16 +11,17 @@ Features
 ---
 Current:
 - Create, combine, graph, simplify, differentiate, and evaluate expressions:
-  - Arithmetic (+, -, &ast;, /)
+  - Arithmetic
   - Exponential/Logarithmic
-  - Trig (sin, cos, and tan)
-  - Variable (so far just x)
+  - Trigonometric
+  - Variable
   - Conditional and Piecewise
 
 Future:
-- More complex simplifying of expressions, such as combining like terms
+- Better reducing/simplifying of expressions
+- Multiple variables
 - GUI for building expressions and graphing them
-- See the TODO comments for more unimplemented features
+- See the `TODO` comments for more unimplemented features
 
 Dependencies
 ---
