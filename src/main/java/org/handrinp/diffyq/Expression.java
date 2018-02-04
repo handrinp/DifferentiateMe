@@ -4,7 +4,7 @@ import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.VariableExpr;
 
 public abstract class Expression {
-  protected static final double DELTA = 0.0000001;
+  public static final double DELTA = 0.0000001;
 
   public static final Expression ZERO = new ConstantExpr(0);
   public static final Expression ONE = new ConstantExpr(1);
@@ -30,6 +30,7 @@ public abstract class Expression {
 
   public abstract String asString();
 
+  @Override
   public final String toString() {
     return asString();
   }
