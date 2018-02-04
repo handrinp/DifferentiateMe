@@ -43,6 +43,6 @@ public class PiecewiseExpr extends Expression {
 
   @Override
   public String asString() {
-    return "(piecewise)";
+    return "(" + exprs.stream().map(Expression::asString).collect(Collectors.joining(", ")) + ")";
   }
 }

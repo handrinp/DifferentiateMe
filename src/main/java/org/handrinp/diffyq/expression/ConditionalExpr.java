@@ -33,7 +33,6 @@ public class ConditionalExpr extends Expression {
 
   @Override
   public String asString() {
-    // TODO
-    return null;
+    return "(?" + expr.toString() + ")";
   }
 }
