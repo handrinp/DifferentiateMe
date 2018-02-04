@@ -138,12 +138,9 @@ public class Graph {
 
     // draw a vertical line between neighboring points to interpolate the graph
     for (int c0 = 0; c0 < img.getWidth() - 1; ++c0) {
-      boolean nonNull = ys[c0] != null && ys[c0 + 1] != null;
-      boolean bothMin = nonNull && ys[c0] == 0 && ys[c0 + 1] == 0;
-      boolean bothMax = nonNull && ys[c0] == maxHeight && ys[c0 + 1] == maxHeight;
-
       // check if the points should be drawn
-      if (nonNull && !(bothMin || bothMax)) {
+      if (ys[c0] != null && ys[c0 + 1] != null && !((ys[c0] == 0 || ys[c0] == maxHeight)
+          && (ys[c0 + 1] == 0 || ys[c0 + 1] == maxHeight))) {
         // thicken the line by making its bounds extra wide/tall
         int rStart = clamp(Math.min(ys[c0], ys[c0 + 1]) - 1, 0, maxHeight);
         int rEnd = clamp(Math.max(ys[c0], ys[c0 + 1]) + 1, 0, maxHeight);
