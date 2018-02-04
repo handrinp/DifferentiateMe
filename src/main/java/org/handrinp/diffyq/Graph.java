@@ -3,8 +3,11 @@ package org.handrinp.diffyq;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -94,7 +97,7 @@ public class Graph {
     }
 
     // draw vertical grid lines
-    for (double x = settings.getMinX() + settings.getMinX() % settings.getStepX(); x < settings
+    for (double x = settings.getMinX() - settings.getMinX() % settings.getStepX(); x < settings
         .getMaxX(); x += settings.getStepX()) {
       int c = xCoord(x);
 
@@ -104,7 +107,7 @@ public class Graph {
     }
 
     // draw horizontal grid lines
-    for (double y = settings.getMinY() + settings.getMinY() % settings.getStepY(); y < settings
+    for (double y = settings.getMinY() - settings.getMinY() % settings.getStepY(); y < settings
         .getMaxY(); y += settings.getStepY()) {
       int r = yCoord(y);
 
@@ -177,6 +180,10 @@ public class Graph {
     frame.pack();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+  public void save(File file) throws IOException {
+    ImageIO.write(graph(), "png", file);
   }
 
   private class Function {
