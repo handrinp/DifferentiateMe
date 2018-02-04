@@ -2,9 +2,14 @@ package org.handrinp.diffyq;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import org.handrinp.diffyq.bool.GreaterExpr;
+import org.handrinp.diffyq.bool.LessEqualExpr;
+import org.handrinp.diffyq.expression.ConditionalExpr;
 import org.handrinp.diffyq.expression.ConstantExpr;
+import org.handrinp.diffyq.expression.PiecewiseExpr;
 import org.handrinp.diffyq.expression.arithmetic.FractionExpr;
 import org.handrinp.diffyq.expression.arithmetic.NegateExpr;
 import org.handrinp.diffyq.expression.arithmetic.ProductExpr;
@@ -28,7 +33,7 @@ public class Testing {
     System.out.println();
   };
 
-  public static void runTestSuite(double x0) {
+  public static void runTestSuite(double x0) throws IOException {
     Expression three = new ConstantExpr(3);
     Expression x = Expression.X;
     Expression add = new SumExpr(three, x, Expression.ZERO);
@@ -43,15 +48,20 @@ public class Testing {
     Expression third = new FractionExpr(new FractionExpr(Expression.ONE, new ConstantExpr(3)),
         new FractionExpr(Expression.ONE, new ConstantExpr(2)));
     Expression fun1 = new SinExpr(inv);
+    Expression peace = new PiecewiseExpr(
+        new ConditionalExpr(new TanExpr(Expression.X),
+            new GreaterExpr(Expression.X, Expression.ZERO)),
+        new ConditionalExpr(new SinExpr(Expression.X),
+            new LessEqualExpr(Expression.X, Expression.ZERO)));
 
     forEachWithIndex(
-        Arrays.asList(three, x, add, neg, inv, prod, sin, cosxx, exp, xx, xxx, third, fun1),
+        Arrays.asList(three, x, add, neg, inv, prod, sin, cosxx, exp, xx, xxx, third, fun1, peace),
         testFunction, x0);
 
     GraphSettings settings = new GraphSettings.Builder().withDimensions(500, 500)
         .withBounds(-Math.PI, Math.PI, -10, 10).build();
     Graph g = new Graph(settings);
-    Expression f = new TanExpr(Expression.X);
+    Expression f = peace;
     Expression df = f.derivative().reduce();
     g.addFunction(df, Color.RED);
     g.addFunction(f);

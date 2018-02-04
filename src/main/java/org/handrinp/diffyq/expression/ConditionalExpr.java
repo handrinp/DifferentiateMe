@@ -1,24 +1,24 @@
 package org.handrinp.diffyq.expression;
 
-import java.util.function.DoublePredicate;
+import org.handrinp.diffyq.BooleanExpr;
 import org.handrinp.diffyq.Expression;
 
 public class ConditionalExpr extends Expression {
   private Expression expr;
-  private DoublePredicate condition;
+  private BooleanExpr condition;
 
-  public ConditionalExpr(Expression expr, DoublePredicate condition) {
+  public ConditionalExpr(Expression expr, BooleanExpr condition) {
     this.expr = expr;
     this.condition = condition;
   }
 
   public boolean test(double x) {
-    return condition.test(x);
+    return condition.evaluate(x);
   }
 
   @Override
   public double evaluate(double x) {
-    return condition.test(x) ? expr.evaluate(x) : Double.NaN;
+    return test(x) ? expr.evaluate(x) : Double.NaN;
   }
 
   @Override
@@ -33,6 +33,6 @@ public class ConditionalExpr extends Expression {
 
   @Override
   public String asString() {
-    return "(?" + expr.toString() + ")";
+    return "{" + expr.toString() + ", if " + condition.asString() + "}";
   }
 }
