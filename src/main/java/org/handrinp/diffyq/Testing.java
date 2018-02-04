@@ -11,6 +11,7 @@ import org.handrinp.diffyq.expression.exponential.PowerExpr;
 import org.handrinp.diffyq.expression.trig.CosExpr;
 import org.handrinp.diffyq.expression.trig.SinExpr;
 
+// TODO move this into src/test/java, and use JUnit
 public class Testing {
   public static IndexedConsumer<Expression> testFunction = (i, f, x) -> {
     String n = i == 0 ? "" : ("" + i);
