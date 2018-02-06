@@ -6,14 +6,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
 
+/**
+ * an expression with one or more conditional expression pieces
+ * 
+ * @author handrinp
+ */
 public class PiecewiseExpr extends Expression {
   private List<ConditionalExpr> exprs;
 
+  /**
+   * construct a piecewise expression with the given pieces
+   * 
+   * @param exprs
+   */
   public PiecewiseExpr(List<ConditionalExpr> exprs) {
     this.exprs = new ArrayList<>();
     this.exprs.addAll(exprs);
   }
 
+  /**
+   * construct a piecewise expression with the given pieces
+   * 
+   * @param exprs
+   */
   public PiecewiseExpr(ConditionalExpr... exprs) {
     this(Arrays.asList(exprs));
   }

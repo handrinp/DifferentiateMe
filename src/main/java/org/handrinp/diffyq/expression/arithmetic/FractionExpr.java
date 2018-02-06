@@ -4,19 +4,50 @@ import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
 
+/**
+ * generalized fraction, with both the numerator and denominator being expressions
+ * 
+ * @author handrinp
+ */
 public class FractionExpr extends Expression {
   private Expression u;
   private Expression v;
 
+  /**
+   * construct a fraction with the given numerator and denominator
+   * 
+   * @param numerator
+   * @param denominator
+   */
   public FractionExpr(Expression numerator, Expression denominator) {
     u = numerator;
     v = denominator;
   }
 
+  /**
+   * convenience method for inverse
+   * 
+   * @param expr
+   * @return 1/expr
+   */
+  public static FractionExpr inverse(Expression expr) {
+    return new FractionExpr(Expression.ONE, expr);
+  }
+
+  /**
+   * get the numerator of the fraction
+   * 
+   * @return u
+   */
   public Expression getU() {
     return u;
   }
 
+  /**
+   * get the denominator of the fraction
+   * 
+   * @return v
+   */
   public Expression getV() {
     return v;
   }

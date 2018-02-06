@@ -13,52 +13,118 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import org.handrinp.diffyq.Expression;
 
+/**
+ * utilities for plotting and graphing expressions
+ * 
+ * @author handrinp
+ */
 public class Graph {
   private List<Function> functions;
   private GraphSettings settings;
 
+  /**
+   * construct a graph with the given settings
+   * 
+   * @param settings
+   */
   public Graph(GraphSettings settings) {
     functions = new ArrayList<>();
     this.settings = settings;
   }
 
-  public void addFunction(Expression f, Color color) {
-    functions.add(new Function(f, color));
-  }
-
-  public void addFunction(Expression f) {
-    addFunction(f, settings.getColor());
-  }
-
+  /**
+   * construct a graph with the default graph settings
+   * 
+   * 800x600, white background, black foreground, blue functions, x bounds: [-10, 10, 1], y bounds:
+   * [-7.5, 7.5, 1]
+   */
   public Graph() {
     this(new GraphSettings.Builder().build());
   }
 
+  /**
+   * add an expression to the graph with the given color for plotting it
+   * 
+   * @param f
+   * @param color
+   */
+  public void addFunction(Expression f, Color color) {
+    functions.add(new Function(f, color));
+  }
+
+  /**
+   * add an expression to the graph with the color as dictated by this graph's GraphSettings
+   * 
+   * @param f
+   */
+  public void addFunction(Expression f) {
+    addFunction(f, settings.getColor());
+  }
+
+  /**
+   * clamp an integer in the range [lo, hi]
+   * 
+   * @param n
+   * @param lo
+   * @param hi
+   * @return the clamped number
+   */
   private static int clamp(int n, int lo, int hi) {
     return Math.min(hi, Math.max(lo, n));
   }
 
+  /**
+   * clamp a double in the range [lo, hi]
+   * 
+   * @param n
+   * @param lo
+   * @param hi
+   * @return the clamped number
+   */
   private static double clamp(double n, double lo, double hi) {
     return Math.min(hi, Math.max(lo, n));
   }
 
+  /**
+   * convert from x value to pixel column
+   * 
+   * @param x
+   * @return a pixel column in the range [0, width)
+   */
   private int xCoord(double x) {
     x = clamp(x, settings.getMinX(), settings.getMaxX());
     return (int) Math.round((settings.getWidth() - 1) * (x - settings.getMinX())
         / (settings.getMaxX() - settings.getMinX()));
   }
 
+  /**
+   * convert from pixel column to x value
+   * 
+   * @param c
+   * @return an x value in the range [-maxX, maxX]
+   */
   private double xValue(int c) {
     double prop = (double) c / settings.getWidth();
     return (1 - prop) * settings.getMinX() + prop * settings.getMaxX();
   }
 
+  /**
+   * convert from y value to pixel row
+   * 
+   * @param y
+   * @return a pixel row in the range [0, height)
+   */
   private int yCoord(double y) {
     y = clamp(y, settings.getMinY(), settings.getMaxY());
     return (int) Math.round((settings.getHeight() - 1)
         * (1 - (y - settings.getMinY()) / (settings.getMaxY() - settings.getMinY())));
   }
 
+  /**
+   * plot the grid lines and axes onto a BufferedImage
+   * 
+   * @return the canvas on which to plot graphs
+   */
   private BufferedImage drawBackground() {
     final int fg = settings.getForeground().getRGB();
     final int bg = settings.getBackground().getRGB();
@@ -120,7 +186,15 @@ public class Graph {
     return img;
   }
 
-  public BufferedImage plot(Expression f, BufferedImage img, Color color) {
+  /**
+   * plot an expression on the image with the given color
+   * 
+   * @param f
+   * @param img
+   * @param color
+   * @return the BufferedImage
+   */
+  private BufferedImage plot(Expression f, BufferedImage img, Color color) {
     final int rgb = color.getRGB();
     final int maxHeight = settings.getHeight() - 1;
     final int maxWidth = settings.getWidth() - 1;
@@ -160,6 +234,12 @@ public class Graph {
     return img;
   }
 
+  /**
+   * create a BufferedImage with the graphs of all expression associated with this Graph plotted on
+   * it
+   * 
+   * @return a BufferdImage with width and height given by the associated GraphSettings
+   */
   public BufferedImage graph() {
     BufferedImage img = drawBackground();
 
@@ -170,6 +250,9 @@ public class Graph {
     return img;
   }
 
+  /**
+   * create a JFrame with the result of graph() on it
+   */
   public void show() {
     JFrame frame = new JFrame("DifferentiateMe");
     frame.getContentPane().setLayout(new FlowLayout());
@@ -180,23 +263,50 @@ public class Graph {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
+  /**
+   * save the result of graph() to a PNG
+   * 
+   * @param file destination file (will be created if it doesn't exist)
+   * @throws IOException if the given file cannot be created or written to (i.e., disk full)
+   */
   public void save(File file) throws IOException {
     ImageIO.write(graph(), "png", file);
   }
 
+  /**
+   * helper class structure to hold the expression and color for a function to be plotted
+   * 
+   * @author handrinp
+   */
   private class Function {
     private Expression f;
     private Color color;
 
+    /**
+     * construct a function with the given expression and color
+     * 
+     * @param f
+     * @param color
+     */
     public Function(Expression f, Color color) {
       this.f = f;
       this.color = color;
     }
 
+    /**
+     * get the expression for this function
+     * 
+     * @return expression
+     */
     public Expression getF() {
       return f;
     }
 
+    /**
+     * get the color for this function
+     * 
+     * @return color
+     */
     public Color getColor() {
       return color;
     }

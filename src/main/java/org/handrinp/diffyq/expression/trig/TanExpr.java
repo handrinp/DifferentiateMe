@@ -4,9 +4,19 @@ import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.arithmetic.FractionExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
 
+/**
+ * the trigonometric tangent function
+ * 
+ * @author handrinp
+ */
 public class TanExpr extends Expression {
   private Expression expr;
 
+  /**
+   * construct a tangent expression
+   * 
+   * @param expr the input to the tangent
+   */
   public TanExpr(Expression expr) {
     this.expr = expr;
   }

@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import org.handrinp.diffyq.bool.GreaterExpr;
-import org.handrinp.diffyq.bool.LessEqualExpr;
+import org.handrinp.diffyq.bool.comparative.GreaterExpr;
+import org.handrinp.diffyq.bool.comparative.LessEqualExpr;
 import org.handrinp.diffyq.expression.ConditionalExpr;
 import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.PiecewiseExpr;
@@ -21,6 +21,11 @@ import org.handrinp.diffyq.expression.trig.TanExpr;
 import org.handrinp.diffyq.gfx.Graph;
 import org.handrinp.diffyq.gfx.GraphSettings;
 
+/**
+ * this class should be replaced by unit tests ASAP
+ * 
+ * @author handrinp
+ */
 public class Testing {
   public static IndexedConsumer<Expression> testFunction = (i, f, x) -> {
     String n = i == 0 ? "" : ("" + i);

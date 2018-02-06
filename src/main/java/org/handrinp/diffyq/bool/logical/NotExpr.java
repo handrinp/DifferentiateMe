@@ -1,14 +1,29 @@
-package org.handrinp.diffyq.bool;
+package org.handrinp.diffyq.bool.logical;
 
 import org.handrinp.diffyq.BooleanExpr;
 
+/**
+ * the logical not operator
+ * 
+ * @author handrinp
+ */
 public class NotExpr extends BooleanExpr {
   private BooleanExpr expr;
 
+  /**
+   * constructs a new not expression corresponding to !expr
+   * 
+   * @param expr
+   */
   public NotExpr(BooleanExpr expr) {
     this.expr = expr;
   }
 
+  /**
+   * the underlying boolean expression
+   * 
+   * @return expr
+   */
   public BooleanExpr getExpr() {
     return expr;
   }

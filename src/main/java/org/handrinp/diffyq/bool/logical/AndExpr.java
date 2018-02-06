@@ -1,11 +1,22 @@
-package org.handrinp.diffyq.bool;
+package org.handrinp.diffyq.bool.logical;
 
 import org.handrinp.diffyq.BooleanExpr;
 
+/**
+ * the logical and operator
+ * 
+ * @author handrinp
+ */
 public class AndExpr extends BooleanExpr {
   private BooleanExpr lhs;
   private BooleanExpr rhs;
 
+  /**
+   * constructs a new and expression corresponding to lhs && rhs
+   * 
+   * @param lhs
+   * @param rhs
+   */
   public AndExpr(BooleanExpr lhs, BooleanExpr rhs) {
     this.lhs = lhs;
     this.rhs = rhs;

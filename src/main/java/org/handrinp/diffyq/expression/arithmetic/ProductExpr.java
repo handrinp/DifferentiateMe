@@ -8,9 +8,19 @@ import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 
+/**
+ * arithmetic product of expressions
+ * 
+ * @author handrinp
+ */
 public class ProductExpr extends Expression {
   private List<Expression> terms;
 
+  /**
+   * construct a product with the given terms as factors
+   * 
+   * @param terms
+   */
   public ProductExpr(List<Expression> terms) {
     this.terms = new ArrayList<>();
 
@@ -23,10 +33,21 @@ public class ProductExpr extends Expression {
     });
   }
 
+  /**
+   * construct a product with the given terms as factors
+   * 
+   * @param terms
+   */
   public ProductExpr(Expression... terms) {
     this(Arrays.asList(terms));
   }
 
+  /**
+   * multiply a factor with the product
+   * 
+   * @param term
+   * @return a new product with all the previous factors and the new one
+   */
   public ProductExpr multiply(Expression term) {
     List<Expression> newTerms = new ArrayList<>();
     newTerms.addAll(terms);

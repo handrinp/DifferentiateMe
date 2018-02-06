@@ -3,13 +3,28 @@ package org.handrinp.diffyq.expression.arithmetic;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 
+/**
+ * arithmetic additive inverse, or negation
+ * 
+ * @author handrinp
+ */
 public class NegateExpr extends Expression {
   private Expression expr;
 
+  /**
+   * construct a negation expression
+   * 
+   * @param expr
+   */
   public NegateExpr(Expression expr) {
     this.expr = expr;
   }
 
+  /**
+   * return the negated expression
+   * 
+   * @return expr
+   */
   public Expression getExpr() {
     return expr;
   }

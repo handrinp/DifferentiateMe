@@ -8,9 +8,19 @@ import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 
+/**
+ * arithmetic sum of expressions
+ * 
+ * @author handrinp
+ */
 public class SumExpr extends Expression {
   private List<Expression> terms;
 
+  /**
+   * construct a sum with the given terms as summands
+   * 
+   * @param terms
+   */
   public SumExpr(List<Expression> terms) {
     this.terms = new ArrayList<>();
 
@@ -23,10 +33,21 @@ public class SumExpr extends Expression {
     });
   }
 
+  /**
+   * construct a sum with the given terms as summands
+   * 
+   * @param terms
+   */
   public SumExpr(Expression... terms) {
     this(Arrays.asList(terms));
   }
 
+  /**
+   * add a term to the sum
+   * 
+   * @param f
+   * @return a new sum with all the previous terms and the new one
+   */
   public SumExpr add(Expression f) {
     List<Expression> newTerms = new ArrayList<>();
     newTerms.addAll(terms);

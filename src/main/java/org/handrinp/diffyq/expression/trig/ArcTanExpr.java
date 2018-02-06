@@ -5,9 +5,19 @@ import org.handrinp.diffyq.expression.arithmetic.FractionExpr;
 import org.handrinp.diffyq.expression.arithmetic.SumExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
 
+/**
+ * the trigonometric inverse tangent function
+ * 
+ * @author handrinp
+ */
 public class ArcTanExpr extends Expression {
   private Expression expr;
 
+  /**
+   * construct an inverse tangent expression
+   * 
+   * @param expr the input to the inverse tangent
+   */
   public ArcTanExpr(Expression expr) {
     this.expr = expr;
   }

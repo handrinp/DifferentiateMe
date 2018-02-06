@@ -1,12 +1,23 @@
-package org.handrinp.diffyq.bool;
+package org.handrinp.diffyq.bool.comparative;
 
 import org.handrinp.diffyq.BooleanExpr;
 import org.handrinp.diffyq.Expression;
 
+/**
+ * the comparative greater than or equal to operator
+ * 
+ * @author handrinp
+ */
 public class GreaterEqualExpr extends BooleanExpr {
   private Expression lhs;
   private Expression rhs;
 
+  /**
+   * constructs a new greater than or equal to expression corresponding to lhs >= rhs
+   * 
+   * @param lhs
+   * @param rhs
+   */
   public GreaterEqualExpr(Expression lhs, Expression rhs) {
     this.lhs = lhs;
     this.rhs = rhs;

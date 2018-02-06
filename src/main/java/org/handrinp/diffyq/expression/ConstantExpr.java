@@ -2,13 +2,28 @@ package org.handrinp.diffyq.expression;
 
 import org.handrinp.diffyq.Expression;
 
+/**
+ * a numerical constant
+ * 
+ * @author handrinp
+ */
 public class ConstantExpr extends Expression {
   private double value;
 
+  /**
+   * construct a constant
+   * 
+   * @param value
+   */
   public ConstantExpr(double value) {
     this.value = value;
   }
 
+  /**
+   * get the underlying double value for the constant
+   * 
+   * @return value
+   */
   public double getValue() {
     return value;
   }
