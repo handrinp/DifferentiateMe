@@ -85,6 +85,7 @@ public class ProductExpr extends Expression {
             .map(Expression::reduce).sorted(Comparator.comparing(f -> f.getClass().getName()))
             .collect(Collectors.toList());
 
+    // combine constant terms
     for (int i = 0; i < newTerms.size() - 1; ++i) {
       Expression u = newTerms.remove(i);
 
@@ -102,6 +103,27 @@ public class ProductExpr extends Expression {
         }
       } else {
         newTerms.add(i, u);
+      }
+    }
+
+    // combine fraction terms
+    for (int i = 0; i < newTerms.size() - 1; ++i) {
+      Expression e1 = newTerms.remove(i);
+
+      if (e1 instanceof FractionExpr) {
+        FractionExpr fe1 = (FractionExpr) e1;
+        Expression e2 = newTerms.remove(i);
+
+        if (e2 instanceof FractionExpr) {
+          FractionExpr fe2 = (FractionExpr) e2;
+          newTerms.add(i--, new FractionExpr(new ProductExpr(fe1.getU(), fe2.getU()).reduce(),
+              new ProductExpr(fe1.getV(), fe2.getV()).reduce()));
+        } else {
+          newTerms.add(i, e2);
+          newTerms.add(i, e1);
+        }
+      } else {
+        newTerms.add(i, e1);
       }
     }
 
