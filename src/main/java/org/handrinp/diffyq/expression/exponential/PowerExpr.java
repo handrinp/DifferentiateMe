@@ -1,6 +1,7 @@
 package org.handrinp.diffyq.expression.exponential;
 
 import org.handrinp.diffyq.Expression;
+import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.arithmetic.NegateExpr;
 import org.handrinp.diffyq.expression.arithmetic.ProductExpr;
 import org.handrinp.diffyq.expression.arithmetic.SumExpr;
@@ -11,6 +12,24 @@ public class PowerExpr extends Expression {
 
   public PowerExpr(Expression base, Expression exponent) {
     this.u = base;
+    this.v = exponent;
+  }
+
+  public static PowerExpr squared(Expression expr) {
+    return new PowerExpr(expr, 2);
+  }
+
+  public static PowerExpr sqrt(Expression expr) {
+    return new PowerExpr(expr, 0.5);
+  }
+
+  public PowerExpr(Expression base, double exponent) {
+    this.u = base;
+    this.v = new ConstantExpr(exponent);
+  }
+
+  public PowerExpr(double base, Expression exponent) {
+    this.u = new ConstantExpr(base);
     this.v = exponent;
   }
 

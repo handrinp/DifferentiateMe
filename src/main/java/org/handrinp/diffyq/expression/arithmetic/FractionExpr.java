@@ -28,10 +28,8 @@ public class FractionExpr extends Expression {
 
   @Override
   public Expression derivative() {
-    return new FractionExpr(
-        new SumExpr(new ProductExpr(u.derivative(), v),
-            new NegateExpr(new ProductExpr(u, v.derivative()))),
-        new PowerExpr(v, new ConstantExpr(2)));
+    return new FractionExpr(new SumExpr(new ProductExpr(u.derivative(), v),
+        new NegateExpr(new ProductExpr(u, v.derivative()))), PowerExpr.squared(v));
   }
 
   @Override

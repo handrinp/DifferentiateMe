@@ -1,7 +1,6 @@
 package org.handrinp.diffyq.expression.trig;
 
 import org.handrinp.diffyq.Expression;
-import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.arithmetic.FractionExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
 
@@ -19,8 +18,7 @@ public class TanExpr extends Expression {
 
   @Override
   public Expression derivative() {
-    return new FractionExpr(expr.derivative(),
-        new PowerExpr(new CosExpr(expr), new ConstantExpr(2)));
+    return new FractionExpr(expr.derivative(), PowerExpr.squared(new CosExpr(expr)));
   }
 
   @Override
