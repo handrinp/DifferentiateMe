@@ -12,10 +12,14 @@ Features
 Current:
 - Create, combine, graph, simplify, differentiate, and evaluate expressions:
   - Arithmetic
-  - Exponential/Logarithmic
+  - Exponential
+  - Logarithmic
   - Trigonometric
+  - Inverse Trigonometric
   - Variable
-  - Conditional and Piecewise
+  - Conditional
+  - Piecewise
+  - Boolean
 
 Future:
 - Better reducing/simplifying of expressions
