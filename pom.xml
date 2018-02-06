@@ -40,6 +40,22 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>javadoc</goal>
+							<goal>test-javadoc</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
