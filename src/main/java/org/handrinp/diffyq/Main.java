@@ -13,8 +13,8 @@ public class Main {
    * 
    * this is run when the jar is executed
    * 
-   * @param args
-   * @throws IOException
+   * @param args command line arguments
+   * @throws IOException when the test suite fails to save an image
    */
   public static void main(String[] args) throws IOException {
     Testing.runTestSuite(5);

@@ -11,7 +11,7 @@ public class UndefinedDerivativeException extends RuntimeException {
   /**
    * construct an undefined derivative exception with the given message
    * 
-   * @param msg
+   * @param msg message
    */
   public UndefinedDerivativeException(String msg) {
     super(msg);

@@ -16,8 +16,8 @@ public class FractionExpr extends Expression {
   /**
    * construct a fraction with the given numerator and denominator
    * 
-   * @param numerator
-   * @param denominator
+   * @param numerator numerator
+   * @param denominator denominator
    */
   public FractionExpr(Expression numerator, Expression denominator) {
     u = numerator;
@@ -27,7 +27,7 @@ public class FractionExpr extends Expression {
   /**
    * convenience method for inverse
    * 
-   * @param expr
+   * @param expr expression to invert
    * @return 1/expr
    */
   public static FractionExpr inverse(Expression expr) {

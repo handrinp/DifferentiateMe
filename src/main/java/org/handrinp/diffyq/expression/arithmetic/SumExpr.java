@@ -19,7 +19,7 @@ public class SumExpr extends Expression {
   /**
    * construct a sum with the given terms as summands
    * 
-   * @param terms
+   * @param terms list of summand expressions
    */
   public SumExpr(List<Expression> terms) {
     this.terms = new ArrayList<>();
@@ -36,7 +36,7 @@ public class SumExpr extends Expression {
   /**
    * construct a sum with the given terms as summands
    * 
-   * @param terms
+   * @param terms array of summand expressions
    */
   public SumExpr(Expression... terms) {
     this(Arrays.asList(terms));
@@ -45,7 +45,7 @@ public class SumExpr extends Expression {
   /**
    * add a term to the sum
    * 
-   * @param f
+   * @param f expression to add
    * @return a new sum with all the previous terms and the new one
    */
   public SumExpr add(Expression f) {

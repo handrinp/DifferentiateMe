@@ -14,8 +14,8 @@ public class OrExpr extends BooleanExpr {
   /**
    * constructs a new or expression corresponding to lhs || rhs
    * 
-   * @param lhs
-   * @param rhs
+   * @param lhs first operand
+   * @param rhs second operand
    */
   public OrExpr(BooleanExpr lhs, BooleanExpr rhs) {
     this.lhs = lhs;

@@ -13,7 +13,7 @@ public class NotExpr extends BooleanExpr {
   /**
    * constructs a new not expression corresponding to !expr
    * 
-   * @param expr
+   * @param expr boolean expression to negate
    */
   public NotExpr(BooleanExpr expr) {
     this.expr = expr;
@@ -22,7 +22,7 @@ public class NotExpr extends BooleanExpr {
   /**
    * the underlying boolean expression
    * 
-   * @return expr
+   * @return expr boolean expression
    */
   public BooleanExpr getExpr() {
     return expr;

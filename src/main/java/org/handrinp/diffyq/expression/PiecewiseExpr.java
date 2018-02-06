@@ -17,7 +17,7 @@ public class PiecewiseExpr extends Expression {
   /**
    * construct a piecewise expression with the given pieces
    * 
-   * @param exprs
+   * @param exprs conditional expression list
    */
   public PiecewiseExpr(List<ConditionalExpr> exprs) {
     this.exprs = new ArrayList<>();
@@ -27,7 +27,7 @@ public class PiecewiseExpr extends Expression {
   /**
    * construct a piecewise expression with the given pieces
    * 
-   * @param exprs
+   * @param exprs conditional expression varargs
    */
   public PiecewiseExpr(ConditionalExpr... exprs) {
     this(Arrays.asList(exprs));

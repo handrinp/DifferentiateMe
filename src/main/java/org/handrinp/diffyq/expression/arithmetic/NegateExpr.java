@@ -14,7 +14,7 @@ public class NegateExpr extends Expression {
   /**
    * construct a negation expression
    * 
-   * @param expr
+   * @param expr expression to negate
    */
   public NegateExpr(Expression expr) {
     this.expr = expr;

@@ -13,10 +13,10 @@ public class LessExpr extends BooleanExpr {
   private Expression rhs;
 
   /**
-   * constructs a new less than expression corresponding to lhs < rhs
+   * constructs a new less than expression corresponding to lhs &lt; rhs
    * 
-   * @param lhs
-   * @param rhs
+   * @param lhs first operand
+   * @param rhs second operand
    */
   public LessExpr(Expression lhs, Expression rhs) {
     this.lhs = lhs;

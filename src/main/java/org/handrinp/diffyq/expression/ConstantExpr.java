@@ -13,7 +13,7 @@ public class ConstantExpr extends Expression {
   /**
    * construct a constant
    * 
-   * @param value
+   * @param value constant value
    */
   public ConstantExpr(double value) {
     this.value = value;

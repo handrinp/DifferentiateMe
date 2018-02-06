@@ -19,7 +19,7 @@ public class ProductExpr extends Expression {
   /**
    * construct a product with the given terms as factors
    * 
-   * @param terms
+   * @param terms list of factors to multiply
    */
   public ProductExpr(List<Expression> terms) {
     this.terms = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ProductExpr extends Expression {
   /**
    * construct a product with the given terms as factors
    * 
-   * @param terms
+   * @param terms array of factors to multiply
    */
   public ProductExpr(Expression... terms) {
     this(Arrays.asList(terms));
@@ -45,7 +45,7 @@ public class ProductExpr extends Expression {
   /**
    * multiply a factor with the product
    * 
-   * @param term
+   * @param term factor
    * @return a new product with all the previous factors and the new one
    */
   public ProductExpr multiply(Expression term) {

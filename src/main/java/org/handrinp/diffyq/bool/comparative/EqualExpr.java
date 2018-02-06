@@ -15,8 +15,8 @@ public class EqualExpr extends BooleanExpr {
   /**
    * construct a new equals expression corresponding to lhs == rhs
    * 
-   * @param lhs
-   * @param rhs
+   * @param lhs first operand
+   * @param rhs second operand
    */
   public EqualExpr(Expression lhs, Expression rhs) {
     this.lhs = lhs;

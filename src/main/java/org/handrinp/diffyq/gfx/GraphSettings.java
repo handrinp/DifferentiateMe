@@ -32,17 +32,17 @@ public class GraphSettings {
    * 
    * should only be used by the Builder
    * 
-   * @param width
-   * @param height
-   * @param background
-   * @param foreground
-   * @param color
-   * @param minX
-   * @param maxX
-   * @param stepX
-   * @param minY
-   * @param maxY
-   * @param stepY
+   * @param width width
+   * @param height height
+   * @param background background color
+   * @param foreground foreground color
+   * @param color default color
+   * @param minX minX
+   * @param maxX maxX
+   * @param stepX stepX
+   * @param minY minY
+   * @param maxY maxY
+   * @param stepY stepY
    */
   private GraphSettings(int width, int height, Color background, Color foreground, Color color,
       double minX, double maxX, double stepX, double minY, double maxY, double stepY) {
@@ -110,8 +110,8 @@ public class GraphSettings {
     /**
      * set the dimensions for the GraphSettings
      * 
-     * @param width
-     * @param height
+     * @param width width
+     * @param height height
      * @return the Builder on which it was called
      */
     public Builder withDimensions(int width, int height) {
@@ -138,12 +138,12 @@ public class GraphSettings {
     /**
      * set the graph bounds for the GraphSettings
      * 
-     * @param minX
-     * @param maxX
-     * @param stepX
-     * @param minY
-     * @param maxY
-     * @param stepY
+     * @param minX minX
+     * @param maxX maxX
+     * @param stepX stepX
+     * @param minY minY
+     * @param maxY maxY
+     * @param stepY stepY
      * @return the Builder on which it was called
      */
     public Builder withBounds(double minX, double maxX, double stepX, double minY, double maxY,
@@ -160,10 +160,10 @@ public class GraphSettings {
     /**
      * set the graph bounds for the GraphSettings, but automatically calculate the x and y steps
      * 
-     * @param minX
-     * @param maxX
-     * @param minY
-     * @param maxY
+     * @param minX minX
+     * @param maxX maxX
+     * @param minY minY
+     * @param maxY maxY
      * @return the Builder on which it was called
      */
     public Builder withBounds(double minX, double maxX, double minY, double maxY) {

@@ -18,8 +18,8 @@ public class PowerExpr extends Expression {
   /**
    * construct a power expression base^exponent
    * 
-   * @param base
-   * @param exponent
+   * @param base base expression
+   * @param exponent exponent expression
    */
   public PowerExpr(Expression base, Expression exponent) {
     this.u = base;
@@ -29,8 +29,8 @@ public class PowerExpr extends Expression {
   /**
    * construct a power expression with a constant exponent
    * 
-   * @param base
-   * @param exponent
+   * @param base base expression
+   * @param exponent exponent constant
    */
   public PowerExpr(Expression base, double exponent) {
     this.u = base;
@@ -40,8 +40,8 @@ public class PowerExpr extends Expression {
   /**
    * construct a power expression with a constant base
    * 
-   * @param base
-   * @param exponent
+   * @param base base constant
+   * @param exponent exponent expression
    */
   public PowerExpr(double base, Expression exponent) {
     this.u = new ConstantExpr(base);
@@ -51,7 +51,7 @@ public class PowerExpr extends Expression {
   /**
    * convenience method for expressions squared
    * 
-   * @param expr
+   * @param expr expression to square
    * @return expr^2
    */
   public static PowerExpr squared(Expression expr) {
@@ -61,7 +61,7 @@ public class PowerExpr extends Expression {
   /**
    * convenience method for square roots of expressions
    * 
-   * @param expr
+   * @param expr expression to square root
    * @return expr^(1/2) = sqrt(expr)
    */
   public static PowerExpr sqrt(Expression expr) {

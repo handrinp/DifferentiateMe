@@ -18,8 +18,8 @@ public class ConditionalExpr extends Expression {
   /**
    * construct a conditional expression with the given expression and condition
    * 
-   * @param expr
-   * @param condition
+   * @param expr expr
+   * @param condition condition
    */
   public ConditionalExpr(Expression expr, BooleanExpr condition) {
     this.expr = expr;
@@ -29,7 +29,7 @@ public class ConditionalExpr extends Expression {
   /**
    * check if the condition holds for the given x
    * 
-   * @param x
+   * @param x value to test
    * @return true if the condition holds
    */
   public boolean test(double x) {

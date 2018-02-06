@@ -34,7 +34,7 @@ public abstract class Expression {
   /**
    * evaluate the expression at the given value
    * 
-   * @param x
+   * @param x x
    * @return f(x)
    */
   public abstract double evaluate(double x);

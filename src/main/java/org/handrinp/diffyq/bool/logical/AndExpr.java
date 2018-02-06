@@ -12,10 +12,10 @@ public class AndExpr extends BooleanExpr {
   private BooleanExpr rhs;
 
   /**
-   * constructs a new and expression corresponding to lhs && rhs
+   * constructs a new and expression corresponding to lhs &amp;&amp; rhs
    * 
-   * @param lhs
-   * @param rhs
+   * @param lhs first operand
+   * @param rhs second operand
    */
   public AndExpr(BooleanExpr lhs, BooleanExpr rhs) {
     this.lhs = lhs;

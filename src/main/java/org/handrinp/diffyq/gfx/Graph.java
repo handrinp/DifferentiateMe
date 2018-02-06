@@ -25,7 +25,7 @@ public class Graph {
   /**
    * construct a graph with the given settings
    * 
-   * @param settings
+   * @param settings settings
    */
   public Graph(GraphSettings settings) {
     functions = new ArrayList<>();
@@ -45,8 +45,8 @@ public class Graph {
   /**
    * add an expression to the graph with the given color for plotting it
    * 
-   * @param f
-   * @param color
+   * @param f expression
+   * @param color color
    */
   public void addFunction(Expression f, Color color) {
     functions.add(new Function(f, color));
@@ -55,7 +55,7 @@ public class Graph {
   /**
    * add an expression to the graph with the color as dictated by this graph's GraphSettings
    * 
-   * @param f
+   * @param f expression
    */
   public void addFunction(Expression f) {
     addFunction(f, settings.getColor());
@@ -64,9 +64,9 @@ public class Graph {
   /**
    * clamp an integer in the range [lo, hi]
    * 
-   * @param n
-   * @param lo
-   * @param hi
+   * @param n number to clamp
+   * @param lo inclusive lower bound
+   * @param hi inclusive upper bound
    * @return the clamped number
    */
   private static int clamp(int n, int lo, int hi) {
@@ -76,9 +76,9 @@ public class Graph {
   /**
    * clamp a double in the range [lo, hi]
    * 
-   * @param n
-   * @param lo
-   * @param hi
+   * @param n number to clamp
+   * @param lo inclusive lower bound
+   * @param hi inclusive upper bound
    * @return the clamped number
    */
   private static double clamp(double n, double lo, double hi) {
@@ -88,7 +88,7 @@ public class Graph {
   /**
    * convert from x value to pixel column
    * 
-   * @param x
+   * @param x x value
    * @return a pixel column in the range [0, width)
    */
   private int xCoord(double x) {
@@ -100,7 +100,7 @@ public class Graph {
   /**
    * convert from pixel column to x value
    * 
-   * @param c
+   * @param c pixel column
    * @return an x value in the range [-maxX, maxX]
    */
   private double xValue(int c) {
@@ -111,7 +111,7 @@ public class Graph {
   /**
    * convert from y value to pixel row
    * 
-   * @param y
+   * @param y y value
    * @return a pixel row in the range [0, height)
    */
   private int yCoord(double y) {
@@ -189,9 +189,9 @@ public class Graph {
   /**
    * plot an expression on the image with the given color
    * 
-   * @param f
-   * @param img
-   * @param color
+   * @param f expression
+   * @param img image
+   * @param color color
    * @return the BufferedImage
    */
   private BufferedImage plot(Expression f, BufferedImage img, Color color) {
@@ -285,8 +285,8 @@ public class Graph {
     /**
      * construct a function with the given expression and color
      * 
-     * @param f
-     * @param color
+     * @param f expression
+     * @param color color
      */
     public Function(Expression f, Color color) {
       this.f = f;

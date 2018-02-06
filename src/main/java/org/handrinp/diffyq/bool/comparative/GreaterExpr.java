@@ -13,10 +13,10 @@ public class GreaterExpr extends BooleanExpr {
   private Expression rhs;
 
   /**
-   * constructs a new greater than expression corresponding to lhs > rhs
+   * constructs a new greater than expression corresponding to lhs &gt; rhs
    * 
-   * @param lhs
-   * @param rhs
+   * @param lhs first operand
+   * @param rhs second operand
    */
   public GreaterExpr(Expression lhs, Expression rhs) {
     this.lhs = lhs;
