@@ -13,6 +13,14 @@ public class FractionExpr extends Expression {
     v = denominator;
   }
 
+  public Expression getU() {
+    return u;
+  }
+
+  public Expression getV() {
+    return v;
+  }
+
   @Override
   public double evaluate(double x) {
     return u.evaluate(x) / v.evaluate(x);
