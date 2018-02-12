@@ -73,12 +73,16 @@ public class ProductExpr extends Expression {
     SumExpr sum = new SumExpr();
 
     for (int i = 0; i < terms.size(); ++i) {
-      ProductExpr product = new ProductExpr(derivatives.get(i));
+      ProductExpr product = new ProductExpr();
 
-      for (int j = 0; j < terms.size(); ++j) {
-        if (i != j) {
-          product = product.multiply(terms.get(j));
-        }
+      for (int j = 0; j < i; ++j) {
+        product = product.multiply(terms.get(j));
+      }
+
+      product = product.multiply(derivatives.get(i));
+
+      for (int j = i + 1; j < terms.size(); ++j) {
+        product = product.multiply(terms.get(j));
       }
 
       sum = sum.add(product);
