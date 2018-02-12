@@ -23,6 +23,24 @@ public class GreaterEqualExpr extends BooleanExpr {
     this.rhs = rhs;
   }
 
+  /**
+   * get the left operand
+   * 
+   * @return the LHS
+   */
+  public Expression getLHS() {
+    return lhs;
+  }
+
+  /**
+   * get the right operand
+   * 
+   * @return the RHS
+   */
+  public Expression getRHS() {
+    return rhs;
+  }
+
   @Override
   public boolean evaluate(double x) {
     final double lhsv = lhs.evaluate(x);

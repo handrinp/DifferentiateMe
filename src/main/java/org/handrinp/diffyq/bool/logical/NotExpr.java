@@ -1,6 +1,10 @@
 package org.handrinp.diffyq.bool.logical;
 
 import org.handrinp.diffyq.BooleanExpr;
+import org.handrinp.diffyq.bool.comparative.GreaterEqualExpr;
+import org.handrinp.diffyq.bool.comparative.GreaterExpr;
+import org.handrinp.diffyq.bool.comparative.LessEqualExpr;
+import org.handrinp.diffyq.bool.comparative.LessExpr;
 
 /**
  * the logical not operator
@@ -37,6 +41,26 @@ public class NotExpr extends BooleanExpr {
   public BooleanExpr reduce() {
     if (expr instanceof NotExpr) {
       return ((NotExpr) expr).getExpr().reduce();
+    }
+
+    if (expr instanceof GreaterExpr) {
+      final GreaterExpr gx = (GreaterExpr) expr.reduce();
+      return new LessEqualExpr(gx.getLHS(), gx.getRHS());
+    }
+
+    if (expr instanceof LessExpr) {
+      final LessExpr lx = (LessExpr) expr.reduce();
+      return new GreaterEqualExpr(lx.getLHS(), lx.getRHS());
+    }
+
+    if (expr instanceof GreaterEqualExpr) {
+      final GreaterEqualExpr gex = (GreaterEqualExpr) expr.reduce();
+      return new LessExpr(gex.getLHS(), gex.getRHS());
+    }
+
+    if (expr instanceof LessEqualExpr) {
+      final LessEqualExpr lex = (LessEqualExpr) expr.reduce();
+      return new GreaterExpr(lex.getLHS(), lex.getRHS());
     }
 
     return new NotExpr(expr.reduce());
