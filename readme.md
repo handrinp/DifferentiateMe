@@ -40,3 +40,9 @@ Running
 ---
 Run the app with `java -jar target/DifferentiateMe.jar`
 
+Example
+---
+For example, consider the blue graph f(x) = {tan(x), if (x > 0.0)}, {sin(x), if (x <= 0.0)}.
+The derivative, f'(x) is plotted in red.
+
+![example graph](graph-example.png)
