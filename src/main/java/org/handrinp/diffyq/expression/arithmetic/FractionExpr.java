@@ -65,8 +65,8 @@ public class FractionExpr extends Expression {
 
   @Override
   public Expression reduce() {
-    Expression newU = u.reduce();
-    Expression newV = v.reduce();
+    final Expression newU = u.reduce();
+    final Expression newV = v.reduce();
 
     if (newV.isOne()) {
       return newU;

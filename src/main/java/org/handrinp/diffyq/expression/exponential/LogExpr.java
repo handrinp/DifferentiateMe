@@ -40,8 +40,10 @@ public class LogExpr extends Expression {
 
   @Override
   public Expression reduce() {
-    if (expr instanceof ConstantExpr) {
-      return new ConstantExpr(Math.log(((ConstantExpr) expr).getValue()));
+    final Expression f = expr.reduce();
+
+    if (f instanceof ConstantExpr) {
+      return new ConstantExpr(Math.log(((ConstantExpr) f).getValue()));
     }
 
     return this;
