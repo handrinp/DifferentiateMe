@@ -11,7 +11,7 @@ import org.handrinp.diffyq.expression.exponential.PowerExpr;
  * 
  * @author handrinp
  */
-public class CosInvExpr extends Expression {
+public class ArcCosExpr extends Expression {
   private Expression expr;
 
   /**
@@ -19,7 +19,7 @@ public class CosInvExpr extends Expression {
    * 
    * @param expr the input to the cosine inverse
    */
-  public CosInvExpr(Expression expr) {
+  public ArcCosExpr(Expression expr) {
     this.expr = expr;
   }
 
@@ -36,7 +36,7 @@ public class CosInvExpr extends Expression {
 
   @Override
   public Expression reduce() {
-    return new CosInvExpr(expr.reduce());
+    return new ArcCosExpr(expr.reduce());
   }
 
   @Override

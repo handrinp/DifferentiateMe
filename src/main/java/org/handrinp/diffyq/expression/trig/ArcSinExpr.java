@@ -11,7 +11,7 @@ import org.handrinp.diffyq.expression.exponential.PowerExpr;
  * 
  * @author handrinp
  */
-public class SinInvExpr extends Expression {
+public class ArcSinExpr extends Expression {
   private Expression expr;
 
   /**
@@ -19,7 +19,7 @@ public class SinInvExpr extends Expression {
    * 
    * @param expr the input to the sine inverse
    */
-  public SinInvExpr(Expression expr) {
+  public ArcSinExpr(Expression expr) {
     this.expr = expr;
   }
 
@@ -36,7 +36,7 @@ public class SinInvExpr extends Expression {
 
   @Override
   public Expression reduce() {
-    return new SinInvExpr(expr.reduce());
+    return new ArcSinExpr(expr.reduce());
   }
 
   @Override
