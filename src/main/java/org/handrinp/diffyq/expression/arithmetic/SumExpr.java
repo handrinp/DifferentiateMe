@@ -117,4 +117,14 @@ public class SumExpr extends Expression {
   public String asString() {
     return "(" + terms.stream().map(Expression::asString).collect(Collectors.joining(" + ")) + ")";
   }
+
+  @Override
+  public int hash() {
+    int hash = 1;
+
+    for (Expression e : terms)
+      hash = 31 * hash + e.hash();
+
+    return hash;
+  }
 }

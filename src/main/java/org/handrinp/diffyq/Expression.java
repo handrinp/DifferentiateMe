@@ -89,4 +89,11 @@ public abstract class Expression {
   public final String toString() {
     return asString();
   }
+
+  public abstract int hash();
+
+  @Override
+  public final int hashCode() {
+    return reduce().hash();
+  }
 }

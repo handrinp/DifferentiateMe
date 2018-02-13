@@ -59,4 +59,8 @@ public class LogExpr extends Expression {
     return "ln(" + expr.asString() + ")";
   }
 
+  @Override
+  public int hash() {
+    return 47 * expr.hash();
+  }
 }

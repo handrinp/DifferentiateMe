@@ -40,4 +40,9 @@ public class TanExpr extends Expression {
   public String asString() {
     return "tan(" + expr.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 131 * expr.hash();
+  }
 }

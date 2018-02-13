@@ -22,4 +22,9 @@ public class VariableExpr extends Expression {
   public String asString() {
     return "x";
   }
+
+  @Override
+  public int hash() {
+    return "x".hashCode();
+  }
 }

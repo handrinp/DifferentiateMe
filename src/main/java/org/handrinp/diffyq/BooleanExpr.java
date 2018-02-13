@@ -23,6 +23,11 @@ public abstract class BooleanExpr {
     public String asString() {
       return "true";
     }
+
+    @Override
+    public int hash() {
+      return "true".hashCode();
+    }
   };
 
   /**
@@ -37,6 +42,12 @@ public abstract class BooleanExpr {
     @Override
     public String asString() {
       return "false";
+    }
+
+    @Override
+    public int hash() {
+      // TODO Auto-generated method stub
+      return "false".hashCode();
     }
   };
 
@@ -60,5 +71,12 @@ public abstract class BooleanExpr {
   @Override
   public final String toString() {
     return asString();
+  }
+
+  public abstract int hash();
+
+  @Override
+  public final int hashCode() {
+    return reduce().hash();
   }
 }

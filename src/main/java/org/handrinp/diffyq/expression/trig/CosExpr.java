@@ -40,4 +40,9 @@ public class CosExpr extends Expression {
   public String asString() {
     return "cos(" + expr.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 113 * expr.hash();
+  }
 }

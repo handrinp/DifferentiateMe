@@ -57,4 +57,9 @@ public class ConstantExpr extends Expression {
   public String asString() {
     return Double.toString(value);
   }
+
+  @Override
+  public int hash() {
+    return Double.hashCode(value);
+  }
 }

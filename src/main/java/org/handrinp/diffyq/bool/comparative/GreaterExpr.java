@@ -55,4 +55,9 @@ public class GreaterExpr extends BooleanExpr {
   public String asString() {
     return "(" + lhs.asString() + " > " + rhs.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 107 * lhs.hash() + rhs.hash();
+  }
 }

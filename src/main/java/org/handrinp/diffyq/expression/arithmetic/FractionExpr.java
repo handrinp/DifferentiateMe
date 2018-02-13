@@ -101,4 +101,9 @@ public class FractionExpr extends Expression {
   public String asString() {
     return "(" + u.asString() + " / " + v.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 11 * u.hash() + v.hash();
+  }
 }

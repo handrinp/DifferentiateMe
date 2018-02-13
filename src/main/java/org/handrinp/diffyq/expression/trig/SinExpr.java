@@ -39,4 +39,9 @@ public class SinExpr extends Expression {
   public String asString() {
     return "sin(" + expr.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 127 * expr.hash();
+  }
 }

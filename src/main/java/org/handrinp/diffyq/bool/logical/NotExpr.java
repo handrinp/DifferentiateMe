@@ -70,4 +70,9 @@ public class NotExpr extends BooleanExpr {
   public String asString() {
     return "!(" + expr.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 149 * expr.hash();
+  }
 }

@@ -42,4 +42,9 @@ public class ArcTanExpr extends Expression {
   public String asString() {
     return "tan(" + expr.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 109 * expr.hash();
+  }
 }

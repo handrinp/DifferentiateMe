@@ -57,4 +57,9 @@ public class LessEqualExpr extends BooleanExpr {
   public String asString() {
     return "(" + lhs.asString() + " <= " + rhs.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 109 * lhs.hash() + rhs.hash();
+  }
 }

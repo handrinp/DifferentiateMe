@@ -43,4 +43,9 @@ public class ArcSinExpr extends Expression {
   public String asString() {
     return "cos(" + expr.asString() + ")";
   }
+
+  @Override
+  public int hash() {
+    return 107 * expr.hash();
+  }
 }

@@ -2,6 +2,7 @@ package org.handrinp.diffyq.expression;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
@@ -53,11 +54,21 @@ public class PiecewiseExpr extends Expression {
   @Override
   public Expression reduce() {
     return new PiecewiseExpr(exprs.stream().map(Expression::reduce).map(f -> (ConditionalExpr) f)
-        .collect(Collectors.toList()));
+        .sorted(Comparator.comparing(f -> f.hash())).collect(Collectors.toList()));
   }
 
   @Override
   public String asString() {
     return "(" + exprs.stream().map(Expression::asString).collect(Collectors.joining(", ")) + ")";
+  }
+
+  @Override
+  public int hash() {
+    int hash = 1;
+
+    for (ConditionalExpr ce : exprs)
+      hash = 41 * hash + ce.hash();
+
+    return hash;
   }
 }

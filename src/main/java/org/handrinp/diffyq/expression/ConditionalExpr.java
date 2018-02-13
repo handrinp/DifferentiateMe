@@ -55,4 +55,9 @@ public class ConditionalExpr extends Expression {
   public String asString() {
     return "{" + expr.toString() + ", if " + condition.asString() + "}";
   }
+
+  @Override
+  public int hash() {
+    return 37 * expr.hash() + condition.hash();
+  }
 }

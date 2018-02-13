@@ -68,4 +68,9 @@ public class NegateExpr extends Expression {
   public String asString() {
     return "-" + expr.asString();
   }
+
+  @Override
+  public int hash() {
+    return 7 * expr.hash();
+  }
 }
