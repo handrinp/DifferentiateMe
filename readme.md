@@ -18,6 +18,8 @@ Current:
   - Inverse Trigonometric
   - Variable
   - Conditional
+  - Modulo
+  - Random number
   - Piecewise
   - Boolean
 
