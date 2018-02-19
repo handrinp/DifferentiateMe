@@ -94,6 +94,6 @@ public abstract class Expression {
 
   @Override
   public final int hashCode() {
-    return reduce().hash();
+    return hash();
   }
 }
