@@ -6,6 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.handrinp.diffyq.Expression;
+import org.handrinp.diffyq.bool.comparative.GreaterEqualExpr;
+import org.handrinp.diffyq.bool.comparative.LessExpr;
+import org.handrinp.diffyq.expression.arithmetic.NegateExpr;
 
 /**
  * an expression with one or more conditional expression pieces
@@ -70,5 +73,16 @@ public class PiecewiseExpr extends Expression {
       hash = 41 * hash + ce.hash();
 
     return hash;
+  }
+
+  /**
+   * convenience method for the absolute value function
+   * 
+   * @param f the expression
+   * @return an expression equivalent to the absolute value of f
+   */
+  public static PiecewiseExpr abs(Expression f) {
+    return new PiecewiseExpr(new ConditionalExpr(f, new GreaterEqualExpr(f, Expression.ZERO)),
+        new ConditionalExpr(new NegateExpr(f), new LessExpr(f, Expression.ZERO)));
   }
 }
