@@ -1,5 +1,6 @@
 package org.handrinp.diffyq.expression.trig;
 
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.arithmetic.FractionExpr;
 import org.handrinp.diffyq.expression.arithmetic.NegateExpr;
@@ -31,7 +32,7 @@ public class ArcSinExpr extends Expression {
   @Override
   public Expression derivative() {
     return new FractionExpr(expr.derivative(),
-        PowerExpr.sqrt(new SumExpr(Expression.ONE, new NegateExpr(PowerExpr.squared(expr)))));
+        PowerExpr.sqrt(new SumExpr(Constants.ONE, new NegateExpr(PowerExpr.squared(expr)))));
   }
 
   @Override

@@ -1,5 +1,6 @@
 package org.handrinp.diffyq.expression.exponential;
 
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.arithmetic.NegateExpr;
@@ -77,7 +78,7 @@ public class PowerExpr extends Expression {
   public Expression derivative() {
     Expression du = u.derivative();
     Expression dv = v.derivative();
-    Expression uToVMinus1 = new PowerExpr(u, new SumExpr(v, new NegateExpr(Expression.ONE)));
+    Expression uToVMinus1 = new PowerExpr(u, new SumExpr(v, new NegateExpr(Constants.ONE)));
     return new SumExpr(new ProductExpr(v, du, uToVMinus1),
         new ProductExpr(this, dv, new LogExpr(u)));
   }
@@ -89,7 +90,7 @@ public class PowerExpr extends Expression {
     }
 
     if (v.isZero()) {
-      return Expression.ONE;
+      return Constants.ONE;
     }
 
     return new PowerExpr(u.reduce(), v.reduce());

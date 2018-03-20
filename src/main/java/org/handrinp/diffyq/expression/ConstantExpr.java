@@ -1,5 +1,6 @@
 package org.handrinp.diffyq.expression;
 
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 
 /**
@@ -30,12 +31,12 @@ public class ConstantExpr extends Expression {
 
   @Override
   public boolean isZero() {
-    return Math.abs(value) < DELTA;
+    return Math.abs(value) < Constants.DELTA;
   }
 
   @Override
   public boolean isOne() {
-    return Math.abs(value - 1) < DELTA;
+    return Math.abs(value - 1) < Constants.DELTA;
   }
 
   @Override
@@ -50,7 +51,7 @@ public class ConstantExpr extends Expression {
 
   @Override
   public Expression reduce() {
-    return isZero() ? Expression.ZERO : isOne() ? Expression.ONE : this;
+    return isZero() ? Constants.ZERO : isOne() ? Constants.ONE : this;
   }
 
   @Override

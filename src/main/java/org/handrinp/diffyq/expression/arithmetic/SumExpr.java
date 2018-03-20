@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 
@@ -100,7 +101,7 @@ public class SumExpr extends Expression {
 
     switch (newTerms.size()) {
       case 0:
-        return Expression.ZERO;
+        return Constants.ZERO;
       case 1:
         return newTerms.get(0);
     }

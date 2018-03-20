@@ -1,5 +1,6 @@
 package org.handrinp.diffyq.expression.trig;
 
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.arithmetic.FractionExpr;
 import org.handrinp.diffyq.expression.arithmetic.SumExpr;
@@ -30,7 +31,7 @@ public class ArcTanExpr extends Expression {
   @Override
   public Expression derivative() {
     return new FractionExpr(expr.derivative(),
-        new SumExpr(Expression.ONE, PowerExpr.squared(Expression.X)));
+        new SumExpr(Constants.ONE, PowerExpr.squared(Constants.X)));
   }
 
   @Override

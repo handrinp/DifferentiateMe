@@ -1,6 +1,7 @@
 package org.handrinp.diffyq.bool.comparative;
 
 import org.handrinp.diffyq.BooleanExpr;
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 
 /**
@@ -45,7 +46,7 @@ public class GreaterEqualExpr extends BooleanExpr {
   public boolean evaluate(double x) {
     final double lhsv = lhs.evaluate(x);
     final double rhsv = rhs.evaluate(x);
-    return lhsv > rhsv || Math.abs(lhsv - rhsv) < Expression.DELTA;
+    return lhsv > rhsv || Math.abs(lhsv - rhsv) < Constants.DELTA;
   }
 
   @Override

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 
@@ -96,7 +97,7 @@ public class ProductExpr extends Expression {
     // if any term is 0, return 0
     if (terms.stream().filter(f -> f instanceof ConstantExpr && ((ConstantExpr) f).isZero())
         .findAny().isPresent()) {
-      return Expression.ZERO;
+      return Constants.ZERO;
     }
 
     // if all terms are constant, reduce this product to a constant
@@ -154,7 +155,7 @@ public class ProductExpr extends Expression {
 
     // product of 0 terms is 1
     if (newTerms.isEmpty())
-      return Expression.ONE;
+      return Constants.ONE;
 
     // product of 1 term is just the term
     if (newTerms.size() == 1)

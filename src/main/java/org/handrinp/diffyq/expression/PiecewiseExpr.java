@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.bool.comparative.GreaterEqualExpr;
 import org.handrinp.diffyq.bool.comparative.LessExpr;
@@ -82,7 +83,7 @@ public class PiecewiseExpr extends Expression {
    * @return an expression equivalent to the absolute value of f
    */
   public static PiecewiseExpr abs(Expression f) {
-    return new PiecewiseExpr(new ConditionalExpr(f, new GreaterEqualExpr(f, Expression.ZERO)),
-        new ConditionalExpr(new NegateExpr(f), new LessExpr(f, Expression.ZERO)));
+    return new PiecewiseExpr(new ConditionalExpr(f, new GreaterEqualExpr(f, Constants.ZERO)),
+        new ConditionalExpr(new NegateExpr(f), new LessExpr(f, Constants.ZERO)));
   }
 }

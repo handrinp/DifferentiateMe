@@ -1,5 +1,6 @@
 package org.handrinp.diffyq.expression.arithmetic;
 
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
@@ -31,7 +32,7 @@ public class FractionExpr extends Expression {
    * @return 1/expr
    */
   public static FractionExpr inverse(Expression expr) {
-    return new FractionExpr(Expression.ONE, expr);
+    return new FractionExpr(Constants.ONE, expr);
   }
 
   /**

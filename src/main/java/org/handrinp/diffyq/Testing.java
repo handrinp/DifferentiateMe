@@ -40,24 +40,24 @@ public class Testing {
 
   public static void runTestSuite(double x0) throws IOException {
     Expression three = new ConstantExpr(3);
-    Expression x = Expression.X;
-    Expression add = new SumExpr(three, x, Expression.ZERO);
+    Expression x = Constants.X;
+    Expression add = new SumExpr(three, x, Constants.ZERO);
     Expression neg = new NegateExpr(x);
-    Expression inv = new FractionExpr(Expression.ONE, x);
+    Expression inv = new FractionExpr(Constants.ONE, x);
     Expression prod = new ProductExpr(three, x, x);
     Expression sin = new SinExpr(x);
     Expression cosxx = new CosExpr(new ProductExpr(x, x));
     Expression exp = new PowerExpr(new ConstantExpr(Math.E), x);
     Expression xx = new PowerExpr(x, new ConstantExpr(2));
     Expression xxx = new PowerExpr(x, new ConstantExpr(3));
-    Expression third = new FractionExpr(new FractionExpr(Expression.ONE, new ConstantExpr(3)),
-        new FractionExpr(Expression.ONE, new ConstantExpr(2)));
+    Expression third = new FractionExpr(new FractionExpr(Constants.ONE, new ConstantExpr(3)),
+        new FractionExpr(Constants.ONE, new ConstantExpr(2)));
     Expression fun1 = new SinExpr(inv);
     Expression peace = new PiecewiseExpr(
-        new ConditionalExpr(new TanExpr(Expression.X),
-            new GreaterExpr(Expression.X, Expression.ZERO)),
-        new ConditionalExpr(new SinExpr(Expression.X),
-            new LessEqualExpr(Expression.X, Expression.ZERO)));
+        new ConditionalExpr(new TanExpr(Constants.X),
+            new GreaterExpr(Constants.X, Constants.ZERO)),
+        new ConditionalExpr(new SinExpr(Constants.X),
+            new LessEqualExpr(Constants.X, Constants.ZERO)));
 
     forEachWithIndex(
         Arrays.asList(three, x, add, neg, inv, prod, sin, cosxx, exp, xx, xxx, third, fun1, peace),

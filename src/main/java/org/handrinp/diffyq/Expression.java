@@ -1,8 +1,5 @@
 package org.handrinp.diffyq;
 
-import org.handrinp.diffyq.expression.ConstantExpr;
-import org.handrinp.diffyq.expression.VariableExpr;
-
 /**
  * this is the root, abstract class on which every numerical expression in the program rests
  * 
@@ -11,26 +8,6 @@ import org.handrinp.diffyq.expression.VariableExpr;
  * @author handrinp
  */
 public abstract class Expression {
-  /**
-   * the constant used in comparing
-   */
-  public static final double DELTA = 0.0000001;
-
-  /**
-   * 0
-   */
-  public static final Expression ZERO = new ConstantExpr(0);
-
-  /**
-   * 1
-   */
-  public static final Expression ONE = new ConstantExpr(1);
-
-  /**
-   * x
-   */
-  public static final Expression X = new VariableExpr();
-
   /**
    * evaluate the expression at the given value
    * 

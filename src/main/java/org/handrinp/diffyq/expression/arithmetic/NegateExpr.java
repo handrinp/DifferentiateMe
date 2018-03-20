@@ -1,5 +1,6 @@
 package org.handrinp.diffyq.expression.arithmetic;
 
+import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
 
@@ -36,7 +37,7 @@ public class NegateExpr extends Expression {
 
   @Override
   public boolean isOne() {
-    return expr instanceof ConstantExpr && Math.abs(((ConstantExpr) expr).getValue() + 1) < DELTA;
+    return expr instanceof ConstantExpr && Math.abs(((ConstantExpr) expr).getValue() + 1) < Constants.DELTA;
   }
 
   @Override

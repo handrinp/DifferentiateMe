@@ -3,7 +3,7 @@ package org.handrinp.diffyq.expression;
 import org.handrinp.diffyq.Expression;
 
 /**
- * represents an algebraic variable that can hold any numeric value
+ * represents an algebraic variable that can hold any real numeric value
  * 
  * @author handrinp
  */
