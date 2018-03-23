@@ -132,26 +132,38 @@ public class ProductExpr extends Expression {
       }
     }
 
+    // TODO: combine variable terms
+
     // combine fraction terms
-    for (int i = 0; i < newTerms.size() - 1; ++i) {
-      Expression e1 = newTerms.remove(i);
+    if (newTerms.stream().anyMatch(term -> term instanceof FractionExpr)) {
+      FractionExpr newFraction = new FractionExpr(Constants.ONE, Constants.ONE);
 
-      if (e1 instanceof FractionExpr) {
-        FractionExpr fe1 = (FractionExpr) e1;
-        Expression e2 = newTerms.remove(i);
-
-        if (e2 instanceof FractionExpr) {
-          FractionExpr fe2 = (FractionExpr) e2;
-          newTerms.add(i--, new FractionExpr(new ProductExpr(fe1.getU(), fe2.getU()).reduce(),
-              new ProductExpr(fe1.getV(), fe2.getV()).reduce()));
-        } else {
-          newTerms.add(i, e2);
-          newTerms.add(i, e1);
-        }
-      } else {
-        newTerms.add(i, e1);
+      for (Expression term : newTerms) {
+        newFraction = newFraction.multiply(term);
       }
+
+      return newFraction.reduce();
     }
+
+    // for (int i = 0; i < newTerms.size() - 1; ++i) {
+    // Expression e1 = newTerms.remove(i);
+    //
+    // if (e1 instanceof FractionExpr) {
+    // FractionExpr fe1 = (FractionExpr) e1;
+    // Expression e2 = newTerms.remove(i);
+    //
+    // if (e2 instanceof FractionExpr) {
+    // FractionExpr fe2 = (FractionExpr) e2;
+    // newTerms.add(i--, new FractionExpr(new ProductExpr(fe1.getU(), fe2.getU()).reduce(),
+    // new ProductExpr(fe1.getV(), fe2.getV()).reduce()));
+    // } else {
+    // newTerms.add(i, e2);
+    // newTerms.add(i, e1);
+    // }
+    // } else {
+    // newTerms.add(i, e1);
+    // }
+    // }
 
     // product of 0 terms is 1
     if (newTerms.isEmpty())

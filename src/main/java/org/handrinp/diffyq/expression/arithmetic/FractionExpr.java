@@ -3,6 +3,7 @@ package org.handrinp.diffyq.expression.arithmetic;
 import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.expression.ConstantExpr;
+import org.handrinp.diffyq.expression.VariableExpr;
 import org.handrinp.diffyq.expression.exponential.PowerExpr;
 
 /**
@@ -33,6 +34,46 @@ public class FractionExpr extends Expression {
    */
   public static FractionExpr inverse(Expression expr) {
     return new FractionExpr(Constants.ONE, expr);
+  }
+
+  /**
+   * multiply this fraction by f
+   * 
+   * @param f an expression
+   * @return a new fraction that represents uf/v
+   */
+  public FractionExpr multiply(Expression f) {
+    ProductExpr newU = new ProductExpr(u);
+    ProductExpr newV = new ProductExpr(v);
+
+    if (f instanceof FractionExpr) {
+      newU = newU.multiply(((FractionExpr) f).getU());
+      newV = newV.multiply(((FractionExpr) f).getV());
+    } else {
+      newU = newU.multiply(f);
+    }
+
+    return new FractionExpr(newU, newV);
+  }
+
+  /**
+   * divide this fraction by f
+   * 
+   * @param f an expression
+   * @return a new fraction that represents u/(fv)
+   */
+  public FractionExpr divide(Expression f) {
+    ProductExpr newU = new ProductExpr(u);
+    ProductExpr newV = new ProductExpr(v);
+
+    if (f instanceof FractionExpr) {
+      newU = newU.multiply(((FractionExpr) f).getV());
+      newV = newV.multiply(((FractionExpr) f).getU());
+    } else {
+      newV = newV.multiply(f);
+    }
+
+    return new FractionExpr(newU, newV);
   }
 
   /**
@@ -92,7 +133,13 @@ public class FractionExpr extends Expression {
 
     if (newV instanceof FractionExpr) {
       FractionExpr newVF = (FractionExpr) newV;
-      return new FractionExpr(new ProductExpr(newU, newVF.u), newVF.v).reduce();
+      return new FractionExpr(new ProductExpr(newU, newVF.v), newVF.u).reduce();
+    }
+
+    // cancel like variable terms
+    // TODO: handle powers of x
+    if (newU instanceof VariableExpr && newV instanceof VariableExpr) {
+      return Constants.ONE;
     }
 
     return new FractionExpr(newU, newV);
