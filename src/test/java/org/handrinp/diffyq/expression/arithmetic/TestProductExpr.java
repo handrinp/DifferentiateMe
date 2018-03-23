@@ -4,6 +4,8 @@ import org.handrinp.diffyq.Constants;
 import org.handrinp.diffyq.Expression;
 import org.handrinp.diffyq.ExpressionTest;
 import org.handrinp.diffyq.expression.ConstantExpr;
+import org.handrinp.diffyq.expression.exponential.PowerExpr;
+import org.handrinp.diffyq.expression.trig.CosExpr;
 import junit.framework.Assert;
 
 public class TestProductExpr extends ExpressionTest {
@@ -46,7 +48,19 @@ public class TestProductExpr extends ExpressionTest {
 
   @Override
   public void testDerivative() {
-    // TODO Auto-generated method stub
+    final Expression expr = new FractionExpr(Constants.ONE, Constants.X).derivative();
 
+    repeat(100, () -> {
+      final double r = rand(-500.0, 500.0);
+      assertEq(-1 / (r * r), expr.evaluate(r));
+    });
+
+    final Expression expr2 =
+        new FractionExpr(new CosExpr(Constants.X), PowerExpr.exp(Constants.X)).derivative();
+
+    repeat(100, () -> {
+      final double r = rand(-5.0, 5.0);
+      assertEq((Math.sin(r) + Math.cos(r)) / -Math.exp(r), expr2.evaluate(r));
+    });
   }
 }

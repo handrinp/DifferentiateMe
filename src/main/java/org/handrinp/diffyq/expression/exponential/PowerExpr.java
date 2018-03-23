@@ -69,6 +69,16 @@ public class PowerExpr extends Expression {
     return new PowerExpr(expr, 0.5);
   }
 
+  /**
+   * convenience method for the exponential function, e^exp
+   * 
+   * @param expr the argument of the exponent
+   * @return e^expr
+   */
+  public static PowerExpr exp(Expression expr) {
+    return new PowerExpr(Math.E, expr);
+  }
+
   @Override
   public double evaluate(double x) {
     return Math.pow(u.evaluate(x), v.evaluate(x));
